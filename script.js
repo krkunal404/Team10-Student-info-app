@@ -7,13 +7,40 @@ document.getElementById('showBtn').addEventListener('click', function() {
     
     if (name && regNo && programme) {
         output.innerHTML = `
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Register Number:</strong> ${regNo}</p>
-            <p><strong>Programme:</strong> ${programme}</p>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Student Details</h2>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="label">Name</span>
+                        <span class="value">${name}</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="label">Register Number</span>
+                        <span class="value">${regNo}</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="label">Programme</span>
+                        <span class="value">${programme}</span>
+                    </div>
+                </div>
+            </div>
         `;
         output.classList.add('show');
     } else {
-        output.innerHTML = '<p>Please fill in all fields</p>';
+        output.innerHTML = `
+            <div class="card error-card">
+                <div class="card-header">
+                    <h2>Error</h2>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="label">Please fill in all fields</span>
+                    </div>
+                </div>
+            </div>
+        `;
         output.classList.add('show');
     }
 });
