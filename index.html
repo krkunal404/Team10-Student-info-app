@@ -1,35 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information System</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Student Information website  </h1>
-        
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name">
-        </div>
-        
-        <div class="form-group">
-            <label for="regNo">Register Number:</label>
-            <input type="text" id="regNo" placeholder="Enter register number">
-        </div>
-        
-        <div class="form-group">
-            <label for="programme">Programme:</label>
-            <input type="text" id="programme" placeholder="Enter programme">
-        </div>
-        
-        <button id="showBtn">Show Details</button>
-    </div>
-    
-    <div id="output" class="output" style="width: 100%; max-width: 400px;"></div>
-    
-    <script src="script.js"></script>
+
+  <main class="sheet">
+
+    <header class="sheet__head">
+      <p class="sheet__kicker">Campus Registry</p>
+      <h1 class="sheet__title">Student Record Lookup</h1>
+      <p class="sheet__sub">Enter your details below to pull up your record.</p>
+    </header>
+
+    <form class="form" id="studentForm">
+
+      <div class="field">
+        <label class="field__label" for="name">Name</label>
+        <input class="field__input" type="text" id="name" name="name" placeholder="Kuheli Begum" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="regNo">Register number</label>
+        <input class="field__input field__input--mono" type="text" id="regNo" name="regNo" placeholder="2347230" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="programme">Programme</label>
+        <input class="field__input" type="text" id="programme" name="programme" placeholder="MCA Computer Appication" required>
+      </div>
+
+      <button class="submit" type="submit">
+        <span>Show details</span>
+        <svg class="submit__arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 9H14M14 9L9.5 4.5M14 9L9.5 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </form>
+
+    <section class="result" id="result" hidden>
+      <div class="result__row"><span class="result__label">Name</span><span class="result__value" id="rName"></span></div>
+      <div class="result__row"><span class="result__label">Register number</span><span class="result__value result__value--mono" id="rReg"></span></div>
+      <div class="result__row"><span class="result__label">Programme</span><span class="result__value" id="rProg"></span></div>
+    </section>
+
+  </main>
+
+<script>
+  const form = document.getElementById('studentForm');
+  const result = document.getElementById('result');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('rName').textContent = document.getElementById('name').value;
+    document.getElementById('rReg').textContent = document.getElementById('regNo').value;
+    document.getElementById('rProg').textContent = document.getElementById('programme').value;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>
+
 </body>
 </html>
